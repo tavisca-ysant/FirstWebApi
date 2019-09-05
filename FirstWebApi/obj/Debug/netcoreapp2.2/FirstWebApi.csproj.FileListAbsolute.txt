@@ -1,0 +1,14 @@
+C:\Users\ysant\source\repos\FirstWebApi\FirstWebApi\bin\Debug\netcoreapp2.2\FirstWebApi.deps.json
+C:\Users\ysant\source\repos\FirstWebApi\FirstWebApi\bin\Debug\netcoreapp2.2\FirstWebApi.runtimeconfig.json
+C:\Users\ysant\source\repos\FirstWebApi\FirstWebApi\bin\Debug\netcoreapp2.2\FirstWebApi.runtimeconfig.dev.json
+C:\Users\ysant\source\repos\FirstWebApi\FirstWebApi\bin\Debug\netcoreapp2.2\FirstWebApi.dll
+C:\Users\ysant\source\repos\FirstWebApi\FirstWebApi\bin\Debug\netcoreapp2.2\FirstWebApi.pdb
+C:\Users\ysant\source\repos\FirstWebApi\FirstWebApi\obj\Debug\netcoreapp2.2\FirstWebApi.csprojResolveAssemblyReference.cache
+C:\Users\ysant\source\repos\FirstWebApi\FirstWebApi\obj\Debug\netcoreapp2.2\FirstWebApi.csproj.CoreCompileInputs.cache
+C:\Users\ysant\source\repos\FirstWebApi\FirstWebApi\obj\Debug\netcoreapp2.2\FirstWebApi.RazorAssemblyInfo.cache
+C:\Users\ysant\source\repos\FirstWebApi\FirstWebApi\obj\Debug\netcoreapp2.2\FirstWebApi.RazorAssemblyInfo.cs
+C:\Users\ysant\source\repos\FirstWebApi\FirstWebApi\obj\Debug\netcoreapp2.2\FirstWebApi.AssemblyInfoInputs.cache
+C:\Users\ysant\source\repos\FirstWebApi\FirstWebApi\obj\Debug\netcoreapp2.2\FirstWebApi.AssemblyInfo.cs
+C:\Users\ysant\source\repos\FirstWebApi\FirstWebApi\obj\Debug\netcoreapp2.2\FirstWebApi.RazorTargetAssemblyInfo.cache
+C:\Users\ysant\source\repos\FirstWebApi\FirstWebApi\obj\Debug\netcoreapp2.2\FirstWebApi.dll
+C:\Users\ysant\source\repos\FirstWebApi\FirstWebApi\obj\Debug\netcoreapp2.2\FirstWebApi.pdb
