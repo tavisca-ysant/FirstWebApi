@@ -9,19 +9,16 @@ namespace FirstWebApi
 {
     public class BookDataStore
     {
-       // public static BookDataStore Current { get; } = new BookDataStore();
-
+      
         public static List<Book> Books { get; set; }
 
-        
-        
         public static List<Book> GetBooks()
         {
             if (Books == null)
                 Books = new List<Book>();
             return Books;
         }
-
+    
         public static Book Get(int id)
         {
             var book = Books.Find(b => b.Id == id);

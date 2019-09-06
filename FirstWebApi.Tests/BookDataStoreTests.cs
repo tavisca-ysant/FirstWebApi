@@ -32,7 +32,7 @@ namespace FirstWebApi.Tests
         public void Update_book_data_using_put_method_success_scenario()
         {
             var bookList = BookDataStore.GetBooks();
-            bookList.Add(new Models.Book
+            bookList.Add(new Book
             {
                 Id = 1,
                 Name = "Dotnet",
