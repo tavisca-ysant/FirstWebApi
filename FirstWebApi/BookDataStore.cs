@@ -1,4 +1,5 @@
 ﻿using FirstWebApi.Models;
+using FirstWebApi.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,9 @@ namespace FirstWebApi
     {
        // public static BookDataStore Current { get; } = new BookDataStore();
 
-        public static List<Book> Books { get; set; } 
+        public static List<Book> Books { get; set; }
 
-        public static int ID = 0;
+        
         
         public static List<Book> GetBooks()
         {
@@ -31,7 +32,7 @@ namespace FirstWebApi
 
         public static void Post(Book book)
         {
-
+            
             Books.Add(book);
         }
 
@@ -40,10 +41,7 @@ namespace FirstWebApi
             var book = Books.Find(b => b.Id == id);
             if (book == null)
                 throw new BookNotFoundException();
-            book.Name = updatedBook.Name;
-            book.Category = updatedBook.Category;
-            book.Price = updatedBook.Price;
-            book.Author = updatedBook.Author;
+            book.CopyPropertiesFrom(updatedBook);
         }
 
         public static void Delete(int id)

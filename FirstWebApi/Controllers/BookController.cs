@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using FirstWebApi.Models;
 using System.Diagnostics;
 using FirstWebApi.Service;
+using FirstWebApi.Utility;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -16,12 +17,14 @@ namespace FirstWebApi.Controllers
     {
         private List<Book> _books;
         private IBookService _bookService;
-         
+        private Response _response;
+        
         public BookController(IBookService bookService)
         {
             // _books.Add(new Book { Id = 1, Name = "CLRS", ISBN = "2001:09", Author = "Cormen" });
             _bookService = bookService;
             _books = _bookService.Get();
+            _response = new Response();
         }
         // GET: api/values
         [HttpGet]
@@ -39,13 +42,12 @@ namespace FirstWebApi.Controllers
             {
                 book = _bookService.Get(id);
             }
-            catch (BookNotFoundException)
+            catch (Exception ex)
             {
-                return NotFound($"Book with ID {id} not found");
-            }
-            catch(InvalidIDException)
-            {
-                return NotFound($"Invalid Id {id}, Id should be a positive number.");
+                if (ex is InvalidIDException)
+                    return BadRequest($"Invalid ID {id}, should be a positive number");
+                if (ex is BookNotFoundException)
+                    return NotFound($"Book with ID {id} not found");
             }
             return Ok(book);
         }
@@ -58,11 +60,15 @@ namespace FirstWebApi.Controllers
             {
                 _bookService.Post(input);
             }
-            catch (InvalidBookParametersException)
+            catch (Exception ex)
             {
-                return NotFound($"Invalid parameters");
+                _response.Error = new ErrorHandler().BookValidation(input);
+                if (ex is InvalidBookParametersException)
+                    return BadRequest(_response.Error);
+                return StatusCode(500);
             }
-            return CreatedAtRoute("GetBook", new { id = input.Id }, input);
+            _response.Book = input;
+            return Created("http://localhost:54471/api/book/",_response.Book);
         }
 
         // PUT api/values/5
@@ -73,27 +79,33 @@ namespace FirstWebApi.Controllers
             {
                 _bookService.Put(id, updatedBook);
             }
-            catch (InvalidBookParametersException)
+            catch (Exception ex)
             {
-                return NotFound($"Invalid parameters");
+                _response.Error = new ErrorHandler().BookValidation(updatedBook);
+                if (ex is InvalidBookParametersException)
+                    return BadRequest(_response.Error);
+                return StatusCode(500);
             }
-            return NoContent();
+            _response.Book = _bookService.Get(id);
+            return Ok(_response.Book);
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-  
             try
             {
                 _bookService.Delete(id);
             }
-            catch (InvalidBookParametersException)
+            catch (Exception ex)
             {
-                return NotFound($"Invalid parameters");
+                if (ex is InvalidIDException)
+                    return BadRequest($"Invalid ID {id}, should be a positive number");
+                if (ex is BookNotFoundException)
+                    return NotFound($"Book with ID {id} not found");
             }
-            return NoContent();
+            return Ok($"Book with ID {id} deleted successfully");
         }
     }
 }

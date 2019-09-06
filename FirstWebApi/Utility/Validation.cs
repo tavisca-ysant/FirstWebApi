@@ -14,12 +14,9 @@ namespace FirstWebApi.Utility
             return Input.All(Char.IsLetter);
         }
 
-        public static bool IsValidBook(Book book)
+        public static bool IsInvalidBook(Book book)
         {
-            
-            return   book.Price > 0 &&
-                IsValidAttribute(book.Name) && IsValidAttribute(book.Category)
-                && IsValidAttribute(book.Author);
+            return new ErrorHandler().BookValidation(book).Count > 0;
         }
     }
 }

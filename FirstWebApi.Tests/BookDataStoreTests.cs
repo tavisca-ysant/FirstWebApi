@@ -37,13 +37,15 @@ namespace FirstWebApi.Tests
                 Id = 1,
                 Name = "Dotnet",
                 Category = "Programming",
-                Author = "G Sanap",
+                Author = "GSanap",
                 Price = 1000
             });
             var newBook = new Book
             {
                 Name = "Java",
-                Author = "G Sanap"
+                Author = "Sanap",
+                Category = "Program",
+                Price = 500
             };
             BookDataStore.Put(1, newBook);
             var updatedBook = BookDataStore.Get(1);

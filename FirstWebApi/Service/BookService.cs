@@ -4,11 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using FirstWebApi.Models;
 using FirstWebApi.Utility;
+using System.Diagnostics;
 
 namespace FirstWebApi.Service
 {
     public class BookService : IBookService
     {
+        public static int ID = 0;
         public void Delete(int id)
         {
             if (id <= 0)
@@ -28,16 +30,17 @@ namespace FirstWebApi.Service
 
         public void Post(Book book)
         {
-            if (!Validation.IsValidBook(book))
+            book.Id = ++ID;
+            if (Validation.IsInvalidBook(book))
                 throw new InvalidBookParametersException();
-            if (book.Id <= 0)
-                throw new InvalidIDException();
             BookDataStore.Post(book);
         }
 
         public void Put(int id, Book updatedBook)
         {
-            if (!Validation.IsValidBook(updatedBook))
+            updatedBook.Id = id;
+            
+            if (Validation.IsInvalidBook(updatedBook))
                 throw new InvalidBookParametersException();
             
             BookDataStore.Put(id, updatedBook);
