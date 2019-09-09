@@ -7,7 +7,8 @@ using FirstWebApi.Models;
 using System.Diagnostics;
 using FirstWebApi.Service;
 using FirstWebApi.Utility;
-
+using Microsoft.AspNetCore.JsonPatch;
+using NLog;
 
 namespace FirstWebApi.Controllers
 {
@@ -23,11 +24,14 @@ namespace FirstWebApi.Controllers
             _bookService = bookService;
             _books = _bookService.Get();
             _response = new Response();
+
+           // Debug.WriteLine("In ctor of BookController");
         }
         
         [HttpGet]
         public IActionResult Get()
         {
+            //_logger.LogInformation($"Book list fetched");
             return Ok(_books);
         }
         
@@ -48,13 +52,13 @@ namespace FirstWebApi.Controllers
             }
             return Ok(book);
         }
-
-        
+   
         [HttpPost]
         public IActionResult Post([FromBody]Book input)
         {
             try
             {
+                Debug.WriteLine("COntroller "+input.Name);
                 _bookService.Post(input);
             }
             catch (Exception ex)
@@ -65,7 +69,8 @@ namespace FirstWebApi.Controllers
                 return StatusCode(500);
             }
             _response.Book = input;
-            return Created("http://localhost:54471/api/book/",_response.Book);
+            return Created("http://localhost:54471/api/book/", _response.Book);
+           // return Ok(input);
         }
 
         [HttpPut("{id}")]
@@ -86,7 +91,6 @@ namespace FirstWebApi.Controllers
             return Ok(_response.Book);
         }
 
-        
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
@@ -102,6 +106,24 @@ namespace FirstWebApi.Controllers
                     return NotFound($"Book with ID {id} not found");
             }
             return Ok($"Book with ID {id} deleted successfully");
+        }
+
+        [HttpPatch("{id}")]
+        public IActionResult Patch(int id,
+                            [FromBody] JsonPatchDocument<Book> patchedBook)
+        {
+            if (patchedBook == null)
+                return BadRequest();
+            var bookFromStore = _bookService.Get(id);
+            var newBookObj = new Book()
+            {
+                Name = bookFromStore.Name
+            };
+            patchedBook.ApplyTo(newBookObj, ModelState);
+            bookFromStore.Name = newBookObj.Name;
+            Debug.WriteLine($"Updated book name is {bookFromStore.Name}");
+            Debug.WriteLine($"Updated book category is {newBookObj.Category}");
+            return Ok();
         }
     }
 }

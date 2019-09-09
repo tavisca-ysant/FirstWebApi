@@ -9,9 +9,7 @@ namespace FirstWebApi
 {
     public class BookDataStore
     {
-      
         public static List<Book> Books { get; set; }
-
         public static List<Book> GetBooks()
         {
             if (Books == null)
@@ -29,7 +27,6 @@ namespace FirstWebApi
 
         public static void Post(Book book)
         {
-            
             Books.Add(book);
         }
 

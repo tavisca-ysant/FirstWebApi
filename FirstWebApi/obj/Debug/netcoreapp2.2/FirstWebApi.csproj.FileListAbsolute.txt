@@ -12,3 +12,4 @@ C:\Users\ysant\source\repos\FirstWebApi\FirstWebApi\obj\Debug\netcoreapp2.2\Firs
 C:\Users\ysant\source\repos\FirstWebApi\FirstWebApi\obj\Debug\netcoreapp2.2\FirstWebApi.RazorTargetAssemblyInfo.cache
 C:\Users\ysant\source\repos\FirstWebApi\FirstWebApi\obj\Debug\netcoreapp2.2\FirstWebApi.dll
 C:\Users\ysant\source\repos\FirstWebApi\FirstWebApi\obj\Debug\netcoreapp2.2\FirstWebApi.pdb
+C:\Users\ysant\source\repos\FirstWebApi\FirstWebApi\bin\Debug\netcoreapp2.2\nlog.config
