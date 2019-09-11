@@ -39,10 +39,10 @@ namespace FirstWebApi.Service
         public void Put(int id, Book updatedBook)
         {
             updatedBook.Id = id;
-            
+
             if (Validation.IsInvalidBook(updatedBook))
                 throw new InvalidBookParametersException();
-            
+
             BookDataStore.Put(id, updatedBook);
         }
     }

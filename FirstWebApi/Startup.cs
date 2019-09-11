@@ -16,7 +16,7 @@ using System.Diagnostics;
 using FirstWebApi.Utility;
 using NLog.Web;
 using NLog.Extensions.Logging;
-using FirstWebApi.Middlewares;
+
 
 namespace FirstWebApi
 {
@@ -65,7 +65,7 @@ namespace FirstWebApi
             //{
             //    await MiddleWare(context, next);
             //});
-            app.UseMiddleware<ValidationMiddleware>();
+        //    app.UseMiddleware<ValidationMiddleware>();
             app.UseHttpsRedirection();
             app.UseMvc();
         }

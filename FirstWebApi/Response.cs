@@ -8,8 +8,18 @@ namespace FirstWebApi
 {
     public class Response
     {
-        
-        public List<string> Error { get; set; }
-        public Book Book { get; set; }
+
+        public List<string> Error { get; set; } = null;
+
+        //public string errorMsg { get; set; } = null;
+
+        public Book Book { get; set; } = null;
+        //private static Response _response { get; set; } = null;
+        //public static Response GetResponse()
+        //{
+        //    if (_response == null)
+        //        _response = new Response();
+        //    return _response;
+        //}
     }
 }

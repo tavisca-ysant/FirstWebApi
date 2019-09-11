@@ -18,23 +18,22 @@ namespace FirstWebApi.Controllers
         private List<Book> _books;
         private IBookService _bookService;
         private Response _response;
-        
+
         public BookController(IBookService bookService)
         {
             _bookService = bookService;
             _books = _bookService.Get();
             _response = new Response();
-
-           // Debug.WriteLine("In ctor of BookController");
+            
         }
-        
+
         [HttpGet]
         public IActionResult Get()
         {
             //_logger.LogInformation($"Book list fetched");
             return Ok(_books);
         }
-        
+
         [HttpGet("{id}", Name = "GetBook")]
         public IActionResult Get(int id)
         {
@@ -52,13 +51,13 @@ namespace FirstWebApi.Controllers
             }
             return Ok(book);
         }
-   
+
         [HttpPost]
         public IActionResult Post([FromBody]Book input)
         {
             try
             {
-                Debug.WriteLine("COntroller "+input.Name);
+                Debug.WriteLine("COntroller " + input.Name);
                 _bookService.Post(input);
             }
             catch (Exception ex)
@@ -70,7 +69,7 @@ namespace FirstWebApi.Controllers
             }
             _response.Book = input;
             return Created("http://localhost:54471/api/book/", _response.Book);
-           // return Ok(input);
+            // return Ok(input);
         }
 
         [HttpPut("{id}")]
