@@ -1,4 +1,5 @@
 ﻿using FirstWebApi.Models;
+using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -41,6 +42,17 @@ namespace FirstWebApi.Utility
             var error = new List<string>();
             error.Add($"Book with {id} not found");
             return error;
+        }
+
+        public List<string> FluentValidatorErrors(IList<ValidationFailure> errors)
+        {
+            Debug.WriteLine("Fluent validator called");
+            foreach(var error in errors)
+            {
+                Debug.WriteLine($"Error is {error.ErrorMessage}");
+                errorMessages.Add(error.ErrorMessage);
+            }
+            return errorMessages;
         }
     }
 }

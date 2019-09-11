@@ -10,6 +10,7 @@ namespace FirstWebApi.Service
 {
     public class BookService : IBookService
     {
+        private Response _response = Response.GetResponse();
         public static int ID = 0;
         public void Delete(int id)
         {

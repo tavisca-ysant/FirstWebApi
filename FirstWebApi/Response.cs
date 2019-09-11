@@ -14,12 +14,12 @@ namespace FirstWebApi
         //public string errorMsg { get; set; } = null;
 
         public Book Book { get; set; } = null;
-        //private static Response _response { get; set; } = null;
-        //public static Response GetResponse()
-        //{
-        //    if (_response == null)
-        //        _response = new Response();
-        //    return _response;
-        //}
+        private static Response _response { get; set; } = null;
+        public static Response GetResponse()
+        {
+            if (_response == null)
+                _response = new Response();
+            return _response;
+        }
     }
 }
